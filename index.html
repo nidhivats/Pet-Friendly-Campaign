@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet-Friendly City Campaign | Making Cities Paw-some!</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Fredoka+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #FF7D00;
+            --secondary: #00A3FF;
+            --accent: #FFD700;
+            --light: #F8F9FA;
+            --dark: #212529;
+            --success: #28A745;
+            --rounded: 12px;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--dark);
+            line-height: 1.6;
+            background-color: var(--light);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: white;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Fredoka One', cursive;
+            font-size: 1.5rem;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .logo i {
+            font-size: 1.8rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 600;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--dark);
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1586671267731-da2cf3ceeb80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1790&q=80') no-repeat center center/cover;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+            animation: fadeIn 1s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-family: 'Fredoka One', cursive;
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: var(--rounded);
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            background-color: #e67100;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            border: 2px solid white;
+            margin-left: 15px;
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Volunteer Form */
+        .volunteer-section {
+            padding: 80px 0;
+            background-color: white;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-family: 'Fredoka One', cursive;
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .section-title p {
+            max-width: 700px;
+            margin: 0 auto;
+            color: #666;
+        }
+
+        .form-container {
+            background-color: var(--light);
+            border-radius: var(--rounded);
+            padding: 40px;
+            box-shadow: var(--shadow);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: var(--rounded);
+            font-family: 'Poppins', sans-serif;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--primary);
+            outline: none;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 20px;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.1rem;
+        }
+
+        /* Impact Stories */
+        .impact-section {
+            padding: 80px 0;
+            background-color: #f0f8ff;
+        }
+
+        .stories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .story-card {
+            background-color: white;
+            border-radius: var(--rounded);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+        }
+
+        .story-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .story-img {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .story-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .story-card:hover .story-img img {
+            transform: scale(1.1);
+        }
+
+        .story-content {
+            padding: 25px;
+        }
+
+        .story-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+
+        .story-content p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .read-more {
+            display: inline-block;
+            color: var(--secondary);
+            font-weight: 600;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .read-more:hover {
+            color: #0077cc;
+        }
+
+        /* Pet Carousel */
+        .pets-section {
+            padding: 80px 0;
+        }
+
+        .pets-carousel {
+            position: relative;
+            max-width: 1000px;
+            margin: 40px auto 0;
+            overflow: hidden;
+        }
+
+        .carousel-container {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .pet-card {
+            min-width: 300px;
+            margin: 0 15px;
+            background-color: white;
+            border-radius: var(--rounded);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .pet-img {
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .pet-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .pet-info {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .pet-info h3 {
+            font-size: 1.4rem;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        .pet-info p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .pet-stats {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat span {
+            display: block;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .stat small {
+            font-size: 0.8rem;
+            color: #999;
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(255, 255, 255, 0.8);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carousel-btn:hover {
+            background-color: white;
+            box-shadow: var(--shadow);
+        }
+
+        #prevBtn {
+            left: 10px;
+        }
+
+        #nextBtn {
+            right: 10px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 60px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            font-family: 'Fredoka One', cursive;
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+
+        .footer-column p {
+            margin-bottom: 15px;
+            color: #bbb;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #bbb;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #bbb;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background-color: white;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 30px;
+                transition: left 0.3s;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero {
+                height: 70vh;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .btn {
+                padding: 10px 20px;
+            }
+
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+
+            .form-container {
+                padding: 30px 20px;
+            }
+
+            .pet-card {
+                min-width: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">
+                    <i class="fas fa-paw"></i>
+                    <span>PawCity</span>
+                </a>
+                <button class="mobile-menu-btn" id="menuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Volunteer</a></li>
+                    <li><a href="#">Impact Stories</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Making Cities Paw-some!</h1>
+                <p>Join thousands of volunteers working to create pet-friendly spaces in urban areas. Together we can make our cities more welcoming for all creatures great and small.</p>
+                <div class="hero-btns">
+                    <a href="#volunteer" class="btn">Volunteer Now</a>
+                    <a href="#" class="btn btn-secondary">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Volunteer Form -->
+    <section class="volunteer-section" id="volunteer">
+        <div class="container">
+            <div class="section-title">
+                <h2>Join the Movement</h2>
+                <p>Fill out the form below to become a volunteer and help us create pet-friendly spaces in your city.</p>
+            </div>
+            <div class="form-container">
+                <form id="volunteerForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="city">City</label>
+                            <input type="text" id="city" name="city" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="role">Role Preference</label>
+                        <select id="role" name="role" required>
+                            <option value="" disabled selected>Select your preferred role</option>
+                            <option value="event-volunteeer">Event Volunteer</option>
+                            <option value="foster">Foster Care Provider</option>
+                            <option value="fundraiser">Fundraiser</option>
+                            <option value="advocate">Community Advocate</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Why do you want to join our campaign? (Optional)</label>
+                        <textarea id="message" name="message" rows="4"></textarea>
+                    </div>
+                    <button type="submit" class="btn submit-btn">Submit Application</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Stories -->
+    <section class="impact-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Impact Stories</h2>
+                <p>Discover how our volunteers are making a difference in communities across the country.</p>
+            </div>
+            <div class="stories-grid">
+                <div class="story-card">
+                    <div class="story-img">
+                        <img src="/Pet Friendly Campaign/istockphoto-1327419998-612x612.jpg" alt="Volunteer with dog">
+                    </div>
+                    <div class="story-content">
+                        <h3>From Streets to Sofas</h3>
+                        <p>Our team rescued 15 stray dogs from the city center and found loving homes for all of them within a month.</p>
+                        <a href="#" class="read-more">Read Full Story →</a>
+                    </div>
+                </div>
+                <div class="story-card">
+                    <div class="story-img">
+                        <img src="/Pet Friendly Campaign/photo-1588943211346-0908a1fb0b01.avif" alt="Dog park">
+                    </div>
+                    <div class="story-content">
+                        <h3>New Dog Park Opens</h3>
+                        <p>After 2 years of campaigning, we finally opened the city's first fully fenced dog park in downtown.</p>
+                        <a href="#" class="read-more">Read Full Story →</a>
+                    </div>
+                </div>
+                <div class="story-card">
+                    <div class="story-img">
+                        <img src="/Pet Friendly Campaign/iStock-1159049945.jpg" alt="Pet food donation">
+                    </div>
+                    <div class="story-content">
+                        <h3>Community Pet Food Drive</h3>
+                        <p>We collected over 2 tons of pet food for low-income families struggling to feed their pets during the pandemic.</p>
+                        <a href="#" class="read-more">Read Full Story →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pets Carousel (Bonus Feature) -->
+    <section class="pets-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Pets Waiting for Homes</h2>
+                <p>These adorable companions are looking for their forever families. Could you be their perfect match?</p>
+            </div>
+            <div class="pets-carousel">
+                <button class="carousel-btn" id="prevBtn"><i class="fas fa-chevron-left"></i></button>
+                <button class="carousel-btn" id="nextBtn"><i class="fas fa-chevron-right"></i></button>
+                <div class="carousel-container" id="carousel">
+                    <div class="pet-card">
+                        <div class="pet-img">
+                            <img src="/Pet Friendly Campaign/photo-1561037404-61cd46aa615b.avif" alt="Dog">
+                        </div>
+                        <div class="pet-info">
+                            <h3>Max</h3>
+                            <p>Friendly and energetic Labrador mix</p>
+                            <div class="pet-stats">
+                                <div class="stat">
+                                    <span>2 yrs</span>
+                                    <small>Age</small>
+                                </div>
+                                <div class="stat">
+                                    <span>Male</span>
+                                    <small>Gender</small>
+                                </div>
+                                <div class="stat">
+                                    <span>Medium</span>
+                                    <small>Size</small>
+                                </div>
+                            </div>
+                            <a href="#" class="btn">Adopt Me</a>
+                        </div>
+                    </div>
+                    <div class="pet-card">
+                        <div class="pet-img">
+                            <img src="/Pet Friendly Campaign/photo-1514888286974-6c03e2ca1dba.avif" alt="Cat">
+                        </div>
+                        <div class="pet-info">
+                            <h3>Luna</h3>
+                            <p>Gentle and affectionate domestic shorthair</p>
+                            <div class="pet-stats">
+                                <div class="stat">
+                                    <span>1.5 yrs</span>
+                                    <small>Age</small>
+                                </div>
+                                <div class="stat">
+                                    <span>Female</span>
+                                    <small>Gender</small>
+                                </div>
+                                <div class="stat">
+                                    <span>Small</span>
+                                    <small>Size</small>
+                                </div>
+                            </div>
+                            <a href="#" class="btn">Adopt Me</a>
+                        </div>
+                    </div>
+                    <div class="pet-card">
+                        <div class="pet-img">
+                            <img src="/Pet Friendly Campaign/photo-1583337130417-3346a1be7dee.avif" alt="Dog">
+                        </div>
+                        <div class="pet-info">
+                            <h3>Rocky</h3>
+                            <p>Playful and loyal German Shepherd mix</p>
+                            <div class="pet-stats">
+                                <div class="stat">
+                                    <span>3 yrs</span>
+                                    <small>Age</small>
+                                </div>
+                                <div class="stat">
+                                    <span>Male</span>
+                                    <small>Gender</small>
+                                </div>
+                                <div class="stat">
+                                    <span>Large</span>
+                                    <small>Size</small>
+                                </div>
+                            </div>
+                            <a href="#" class="btn">Adopt Me</a>
+                        </div>
+                    </div>
+                    <div class="pet-card">
+                        <div class="pet-img">
+                            <img src="https://images.unsplash.com/photo-1533738363-b7f9aef128ce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80" alt="Cat">
+                        </div>
+                        <div class="pet-info">
+                            <h3>Oliver</h3>
+                            <p>Curious and playful tabby cat</p>
+                            <div class="pet-stats">
+                                <div class="stat">
+                                    <span>8 mos</span>
+                                    <small>Age</small>
+                                </div>
+                                <div class="stat">
+                                    <span>Male</span>
+                                    <small>Gender</small>
+                                </div>
+                                <div class="stat">
+                                    <span>Small</span>
+                                    <small>Size</small>
+                                </div>
+                            </div>
+                            <a href="#" class="btn">Adopt Me</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>PawCity</h3>
+                    <p>We're dedicated to creating pet-friendly urban spaces where animals and humans can thrive together.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Volunteer</a></li>
+                        <li><a href="#">Events</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Pet Friendly Ave, City</p>
+                    <p><i class="fas fa-phone"></i> 9711923997</p>
+                    <p><i class="fas fa-envelope"></i> info@pawcity.org</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to our newsletter for updates on our campaigns and events.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your email" required>
+                        <button type="submit" class="btn">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 PawCity Pet-Friendly Campaign. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+<!-- 
+    <script>
+        // Mobile Menu Toggle
+        const menuBtn = document.getElementById('menuBtn');
+        const navLinks = document.getElementById('navLinks');
+
+        menuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            menuBtn.innerHTML = navLinks.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+
+        // Carousel Functionality
+        const carousel = document.getElementById('carousel');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const petCards = document.querySelectorAll('.pet-card');
+        let currentIndex = 0;
+        const cardWidth = 300 + 30; // width + margin
+
+        function updateCarousel() {
+            carousel.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
+        }
+
+        nextBtn.addEventListener('click', () => {
+            if (currentIndex < petCards.length - 1) {
+                currentIndex++;
+                updateCarousel();
+            }
+        });
+
+        prevBtn.addEventListener('click', () => {
+            if (currentIndex > 0) {
+                currentIndex--;
+                updateCarousel();
+            }
+        });
+
+        // Form Submission
+        const volunteerForm = document.getElementById('volunteerForm');
+        
+        volunteerForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Thank you for your application! We will contact you soon.');
+            volunteerForm.reset();
+        });
+    </script> -->
+</body>
+</html>
